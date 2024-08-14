@@ -41,7 +41,7 @@ jobs:
 
       # Package the application
       - name: Package Application
-        run: mvn package && cd target && ls
+        run: mvn package && cd target && cd maven-archiver && ls
         
 
       # Upload build artifacts
