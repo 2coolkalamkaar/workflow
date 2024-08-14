@@ -49,7 +49,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: java-app
-          path: target/*.jar  # Ensure this path matches the location of your built artifact
+          path: target/*.war  # Ensure this path matches the location of your built artifact
 
   deploy:
     runs-on: ubuntu-latest
