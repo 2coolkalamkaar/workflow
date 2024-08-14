@@ -41,7 +41,7 @@ jobs:
 
       # Package the application
       - name: Package Application
-        run: mvn package && ls 
+        run: mvn package && ls
 
       # Upload build artifacts
       - name: Upload Build Artifacts
