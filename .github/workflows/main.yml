@@ -39,17 +39,6 @@ jobs:
       - name: Code Test
         run: mvn test
 
-      # Package the application
-      - name: Code Package
-        run: mvn package  
-
-      # Upload build artifacts (e.g., JAR file) for later use
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: java-app
-          path: target/*.jar
-
   deploy:
     runs-on: ubuntu-latest
     needs: build
