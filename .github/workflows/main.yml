@@ -22,7 +22,7 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
-
+            
       # Code Clean
       - name: Code Clean
         run: mvn clean
@@ -41,8 +41,7 @@ jobs:
 
       # Package the application
       - name: Package Application
-        run: mvn package && cd target && cd maven-archiver && ls
-        
+        run: mvn package
 
       # Upload build artifacts
       - name: Upload Build Artifacts
@@ -63,11 +62,10 @@ jobs:
         with:
           name: java-app
 
-      - name: Deploy to AWS
+      - name: Deploy to AWS S3
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY 
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: 'us-east-1'
-      - name : Deploy static website to S3 bucket 
-        run: aws s3 sync . s3://cabbook -- delete
-          # Docker and AWS deployment commands here
+        run: |
+          aws s3 sync . s3://cabbook --delete 
